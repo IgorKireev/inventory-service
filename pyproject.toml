@@ -1,0 +1,6 @@
+[project]
+name = "inventory-service"
+version = "0.1.0"
+description = "inventory-service"
+requires-python = ">=3.13"
+dependencies = []
