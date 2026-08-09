@@ -1,7 +1,16 @@
 import uuid
-from decimal import Decimal
 from datetime import datetime
-from pydantic import BaseModel
+from decimal import Decimal
+from enum import StrEnum
+
+from pydantic import BaseModel, EmailStr
+
+
+class Status(StrEnum):
+    RESERVED = "reserved"
+    OUT_OF_STOCK = "out_of_stock"
+    NOT_FOUND = "not_found"
+    ERROR = "error"
 
 
 class OrderItemEvent(BaseModel):
@@ -19,12 +28,9 @@ class OrderCreatedEvent(BaseModel):
     created_at: datetime
 
 
-class InventoryCheckedEvent(BaseModel):
+class InventoryEvent(BaseModel):
     order_id: uuid.UUID
-    status: str = "confirmed"
-
-
-class InventoryFailedEvent(BaseModel):
-    order_id: uuid.UUID
-    reason: str
-    failed_sku: str
+    status: Status
+    customer_email: EmailStr
+    failed_sku: str | None = None
+    reason: str | None = None

@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     RABBITMQ_VHOST: str
 
     SERVICE_NAME: str
+    DEBUG: bool
 
     model_config = SettingsConfigDict(
         env_file=".env",
