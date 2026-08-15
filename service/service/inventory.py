@@ -15,7 +15,6 @@ router_publisher = router.publisher(
 
 
 class InventoryService:
-
     def __init__(self, repository: InventoryRepository) -> None:
         self.repository = repository
 
