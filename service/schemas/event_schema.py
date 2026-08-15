@@ -32,5 +32,6 @@ class InventoryEvent(BaseModel):
     order_id: uuid.UUID
     status: Status
     customer_email: EmailStr
+    total_price: Decimal
     failed_sku: str | None = None
     reason: str | None = None

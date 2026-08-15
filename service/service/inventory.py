@@ -28,6 +28,7 @@ class InventoryService:
                         InventoryEvent(
                             order_id=event.order_id,
                             status=Status.NOT_FOUND,
+                            total_price=event.total_price,
                             failed_sku=item.sku,
                             reason=f"SKU {item.sku} not found",
                             customer_email=event.customer_email,
@@ -43,6 +44,7 @@ class InventoryService:
                         InventoryEvent(
                             order_id=event.order_id,
                             status=Status.OUT_OF_STOCK,
+                            total_price=event.total_price,
                             failed_sku=item.sku,
                             reason=f"Not enough stock for {item.sku}",
                             customer_email=event.customer_email,
@@ -60,6 +62,7 @@ class InventoryService:
                         InventoryEvent(
                             order_id=event.order_id,
                             status=Status.OUT_OF_STOCK,
+                            total_price=event.total_price,
                             failed_sku=item.sku,
                             reason="Reserve failed",
                             customer_email=event.customer_email,
@@ -75,6 +78,7 @@ class InventoryService:
                 InventoryEvent(
                     order_id=event.order_id,
                     status=Status.RESERVED,
+                    total_price=event.total_price,
                     customer_email=event.customer_email,
                 ),
                 exchange=inventory_q[2],
@@ -87,6 +91,7 @@ class InventoryService:
                 InventoryEvent(
                     order_id=event.order_id,
                     status=Status.ERROR,
+                    total_price=event.total_price,
                     reason="Internal error",
                     customer_email=event.customer_email,
                 ),
