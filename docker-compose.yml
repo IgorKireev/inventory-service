@@ -3,12 +3,12 @@ services:
     build: .
     container_name: inventory_service
     depends_on:
-      db:
+      inventory_db:
         condition: service_healthy
     environment:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
-      - DB_HOST=db
+      - DB_HOST=inventory_db
       - DB_NAME=${DB_NAME}
       - DB_PORT=5432
       - RABBITMQ_USER=${RABBITMQ_USER}
@@ -20,7 +20,7 @@ services:
     networks:
       - backend
 
-  db:
+  inventory_db:
     image: postgres:16
     container_name: inventory_db
     restart: always
